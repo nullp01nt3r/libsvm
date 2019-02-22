@@ -1,0 +1,13 @@
+/java/model
+/java/output
+/svm-predict
+/svm-scale
+/svm-train
+/*.o
+/tools/*.predict
+/tools/*.scale
+/tools/*.model
+/tools/*.range
+/tools/*.out
+/tools/*.png
+/*.model
