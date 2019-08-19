@@ -8,7 +8,7 @@ if len(sys.argv) <= 1:
 	print('Usage: {0} training_file [testing_file]'.format(sys.argv[0]))
 	raise SystemExit
 
-# svm, grid, and gnuplot executable files
+# svm and grid executable files
 
 is_win32 = (sys.platform == 'win32')
 if not is_win32:
@@ -16,19 +16,16 @@ if not is_win32:
 	svmtrain_exe = "../svm-train"
 	svmpredict_exe = "../svm-predict"
 	grid_py = "./grid.py"
-	gnuplot_exe = "/usr/bin/gnuplot"
 else:
         # example for windows
 	svmscale_exe = r"..\windows\svm-scale.exe"
 	svmtrain_exe = r"..\windows\svm-train.exe"
 	svmpredict_exe = r"..\windows\svm-predict.exe"
-	gnuplot_exe = r"C:\Program Files\gnuplot\bin\gnuplot.exe"
 	grid_py = r".\grid.py"
 
 assert os.path.exists(svmscale_exe),"svm-scale executable not found"
 assert os.path.exists(svmtrain_exe),"svm-train executable not found"
 assert os.path.exists(svmpredict_exe),"svm-predict executable not found"
-assert os.path.exists(gnuplot_exe),"gnuplot executable not found"
 assert os.path.exists(grid_py),"grid.py not found"
 
 train_pathname = sys.argv[1]
@@ -49,7 +46,7 @@ cmd = '{0} -l 0 -s "{1}" "{2}" > "{3}"'.format(svmscale_exe, range_file, train_p
 print('Scaling training data...')
 Popen(cmd, shell = True, stdout = PIPE).communicate()
 
-cmd = 'python {0} -svmtrain "{1}" -gnuplot "{2}" "{3}"'.format(grid_py, svmtrain_exe, gnuplot_exe, scaled_file)
+cmd = 'python {0} -svmtrain "{1}" "{2}"'.format(grid_py, svmtrain_exe, scaled_file)
 print('Cross validation|start|command|{}'.format(cmd))
 f = Popen(cmd, shell = True, stdout = PIPE).stdout
 
