@@ -99,7 +99,7 @@ class GridOption:
 		if not self.grid_with_c and not self.grid_with_g:
 			raise ValueError('-log2c and -log2g should not be null simultaneously')
 		if self.gnuplot_pathname and not os.path.exists(self.gnuplot_pathname):
-			sys.stderr.write('gnuplot executable not found\n')
+			sys.stderr.write('gnuplot executable not found: gnuplot disabled\n')
 			self.gnuplot_pathname = None
 
 def redraw(db,best_param,gnuplot,options,tofile=False):
